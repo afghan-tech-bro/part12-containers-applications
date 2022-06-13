@@ -10,6 +10,8 @@ router.get('/', async (_, res) => {
 
 /* POST todo to listing. */
 router.post('/', async (req, res) => {
+  console.log(req);
+  
   const todo = await Todo.create({
     text: req.body.text,
     done: false
@@ -35,12 +37,18 @@ singleRouter.delete('/', async (req, res) => {
 
 /* GET todo. */
 singleRouter.get('/', async (req, res) => {
-  res.sendStatus(405); // Implement this
+  res.send(req.todo);
 });
 
 /* PUT todo. */
 singleRouter.put('/', async (req, res) => {
-  res.sendStatus(405); // Implement this
+  const id = req.todo._id
+  const update = {
+    text: req.todo.text,
+    done: req.todo.done
+  }
+  await Todo.findOneAndUpdate({ _id: id }, update)
+  res.sendStatus(200);
 });
 
 router.use('/:id', findByIdMiddleware, singleRouter)
