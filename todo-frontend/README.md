@@ -22,4 +22,7 @@ docker run -p 3001:80 todo-frontend-dev
 
 docker build -f ./dev.Dockerfile -t hello-front-dev .
 docker run -p 3000:3000 -v "$(pwd):/usr/src/app/" hello-front-dev
+
+docker-compose up
+docker exec hello-front-dev npm install axios # add to package.json and run docker build again
 ```
