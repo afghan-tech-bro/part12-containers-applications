@@ -45,6 +45,23 @@ The syntax is: container run -v FILE-IN-HOST:FILE-IN-CONTAINER
 docker-compose -f docker-compose.dev.yml down --volumes   #ensures nothing is left and starts from a clean slate
 docker-compose -f docker-compose.dev.yml up   # initialize the db
 MONGO_URL=mongodb://the_username:the_password@localhost:3456/the_database npm run dev
+REDIS_URL=//localhost:3457 MONGO_URL=mongodb://localhost:3456/the_database npm run dev
 ```
 [localhost:3000/todos](http://localhost:3000/todos) will return list of todos, can add/delete a todo
 
+
+Access docker bash and check db in container
+```
+docker exec -it CONTAINER bash
+mongo -u root -p example  # username: root, password: example
+show dbs
+use the_database
+show collections
+db.todos.find({})
+
+redis-cli
+KEYS *
+GET added_todos
+SET added_todos 9001
+DEL added_todos
+```

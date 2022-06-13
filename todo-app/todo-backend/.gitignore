@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+# persisted data
+mongo_data/
+redis_data/
