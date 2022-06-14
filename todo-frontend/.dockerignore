@@ -2,3 +2,6 @@
 .gitignore
 node_modeules
 Dockerfile
+dev.Dockerfile
+docker-compose
+docker-compose.dev

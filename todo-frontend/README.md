@@ -25,4 +25,7 @@ docker run -p 3000:3000 -v "$(pwd):/usr/src/app/" hello-front-dev
 
 docker-compose up
 docker exec hello-front-dev npm install axios # add to package.json and run docker build again
+
+docker-compose run debug-helper wget -O - http://hello-front-dev:3000 # flag -O with - to output response to the stdout
 ```
+docker-compose run SERVICE COMMAND to run a service with a specific command
